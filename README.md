@@ -2,7 +2,9 @@
 
 Projet d'upload de fichiers vers Cloudinary avec Node.js, Express et EJS.
 
-## 🚀 Pour rendre le projet fonctionnel
+## Contributeurs
+
+Coppet Dimitri, Baraton François, Vogler Wilfried, Martinez Joris
 
 ### 1. Installation des dépendances
 
@@ -18,9 +20,9 @@ npm install
 - Remplissez vos identifiants Cloudinary :
 
 ```env
-CLOUDINARY_CLOUD_NAME=votre_cloud_name
-CLOUDINARY_API_KEY=votre_api_key
-CLOUDINARY_API_SECRET=votre_api_secret
+CLOUDINARY_CLOUD_NAME=dujh7ntcg
+CLOUDINARY_API_KEY=329944922389717
+CLOUDINARY_API_SECRET=6lgeal_hf63ircTEWRh_tP4mxNg
 PORT=3000
 NODE_ENV=development
 ```
@@ -63,5 +65,3 @@ cloudinary-upload-project/
 
 - `POST /api/upload` - Upload de fichier
 - `DELETE /api/delete/:public_id` - Suppression de fichier
-- `GET /api/transform/:public_id` - Transformation d'image
-- `GET /health` - Statut du serveur
