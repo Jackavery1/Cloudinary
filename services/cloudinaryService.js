@@ -1,42 +1,47 @@
-import { v2 as cloudinary } from "cloudinary";
+const cloudinary = require("../config/cloudinary");
 
-(async function () {
-  // Configuration
-  cloudinary.config({
-    cloud_name: "dujh7ntcg",
-    api_key: "329944922389717",
-    api_secret: "<your_api_secret>", // Click 'View API Keys' above to copy your API secret
-  });
+// Service Cloudinary
+class CloudinaryService {
+  // Upload d'un fichier
+  static async uploadFile(filePath) {
+    try {
+      const result = await cloudinary.uploader.upload(filePath, {
+        folder: "uploads",
+        resource_type: "auto",
+      });
 
-  // Upload an image
-  const uploadResult = await cloudinary.uploader
-    .upload(
-      "https://res.cloudinary.com/demo/image/upload/getting-started/shoes.jpg",
-      {
-        public_id: "shoes",
-      }
-    )
-    .catch((error) => {
-      console.log(error);
-    });
+      return {
+        success: true,
+        url: result.secure_url,
+        public_id: result.public_id,
+        format: result.format,
+        size: result.bytes,
+      };
+    } catch (error) {
+      console.error("Erreur upload:", error);
+      return {
+        success: false,
+        error: error.message,
+      };
+    }
+  }
 
-  console.log(uploadResult);
+  // Suppression d'un fichier
+  static async deleteFile(publicId) {
+    try {
+      const result = await cloudinary.uploader.destroy(publicId);
+      return {
+        success: true,
+        result,
+      };
+    } catch (error) {
+      console.error("Erreur suppression:", error);
+      return {
+        success: false,
+        error: error.message,
+      };
+    }
+  }
+}
 
-  // Optimize delivery by resizing and applying auto-format and auto-quality
-  const optimizeUrl = cloudinary.url("shoes", {
-    fetch_format: "auto",
-    quality: "auto",
-  });
-
-  console.log(optimizeUrl);
-
-  // Transform the image: auto-crop to square aspect_ratio
-  const autoCropUrl = cloudinary.url("shoes", {
-    crop: "auto",
-    gravity: "auto",
-    width: 500,
-    height: 500,
-  });
-
-  console.log(autoCropUrl);
-})();
+module.exports = CloudinaryService;

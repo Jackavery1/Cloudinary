@@ -26,5 +26,5 @@ app.get("/", (req, res) => {
 app.use("/api", uploadRoutes);
 
 app.listen(PORT, () => {
-  console.log(` Serveur démarré sur le port ${PORT}`);
+  console.log(`Serveur démarré sur le port ${PORT}`);
 });
