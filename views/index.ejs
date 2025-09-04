@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload Cloudinary</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>📁 Upload Cloudinary</h1>
+
+      <div class="upload-area" id="uploadArea">
+        <p>Cliquez pour sélectionner un fichier</p>
+        <input
+          type="file"
+          id="fileInput"
+          accept="image/*,video/*,audio/*,.pdf,.doc,.docx"
+        />
+      </div>
+
+      <button class="btn" id="uploadBtn" onclick="uploadFile()" disabled>
+        Uploader vers Cloudinary
+      </button>
+
+      <div class="result" id="result"></div>
+    </div>
+  </body>
+</html>
